@@ -1,11 +1,11 @@
 const express = require('express');
 const connect = require('./config/database');
-const Tweet = require('./models/tweet');
-const Hashtag = require('./models/hashtag');
-const TweetRepository = require('./repository/tweetRepository');
-const TweetService = require('./services/tweet-service');
+const routes = require('./routes/index');
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api', routes);
 const run = () => {
     app.listen(3000, async() => {
         console.log('Server is running on port 3000');
